@@ -14,7 +14,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from './Croptype';
 import Fc from './Feedchart';
 import Gs from './Graphs';
-import FeedCalculator from './Profile';
+import FeedCalculator from './FeedCalculator';
 import Ps from './Profile';
 import Cc from './Customer support';
 import Tc from './Terms & conditions';

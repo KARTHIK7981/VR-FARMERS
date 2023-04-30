@@ -14,7 +14,7 @@ export default Fc = () => {
   useEffect(() => {
     handleClick();
   }, []);
-  const handleClick = async data => {
+  const handleClick = async (data='vanami') => {
     setLoading(true);
     let value = data == 1 ? 'vanami' : 'dat';
     try {
