@@ -8,8 +8,9 @@ import CustomText from './CustomText';
 import Customdropdown from './Customdropdown';
 import Modal from 'react-native-modal';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import AppLoader from '../AppLoader';
 
-export default FeedCalculator = () => {
+ const Cl = () => {
   const [count, setCount] = useState('');
   const [bag, setBag] = useState('');
   const [selectedItem, setSelectedItem] = useState('');
@@ -28,7 +29,8 @@ export default FeedCalculator = () => {
   const onPressButton = () => {
     let kg = 25 * bag;
     let ratio = selectedItem === 'titan' ? 1.1 : 2.0;
-    setValue(Math.trunc(kg / ratio) * count);
+    let number = Math.round(((((kg / ratio) * count)/100000) + Number.EPSILON) * 100) / 100;
+    setValue(number);
     SetVisible(true);
   };
   // Function to change FeedValue into Rupees Format
@@ -40,9 +42,10 @@ export default FeedCalculator = () => {
     return curr;
   };
   return (
+    <>
     <View >
-      <Text style={styles.heading}>Feed Calculator</Text>
        <View style={styles.container}>
+       <Text style={styles.heading}>Feed Calculator</Text>
       <CustomText holder={'count'}  onChangeText={handleCountChange} />
       <CustomText holder={'Bags'} onChangeText={handleBagChange} />
        </View>
@@ -74,16 +77,17 @@ export default FeedCalculator = () => {
             justifyContent: 'center',
           }}>
           <Text>Number in Lakhs</Text>
-          <Text style={styles.lakh}>{toIndianCurrency(value)}</Text>
+          <Text style={styles.lakh}>{value}L</Text>
         </View>
       </Modal>
     </View>
+
+    </>
   );
 };
-
+export default Cl;
 const styles = StyleSheet.create({
   heading: {
-    fontStyles: 'normal',
     fontWeight: 'bold',
     textAlign: 'center',
     fontSize: 40,

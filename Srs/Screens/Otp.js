@@ -53,7 +53,7 @@ const Os = ({ navigation }) => {
                                             <Button 
                                             // variant="extended"
                                             title="Proceed" 
-                                            onPress={() => navigation.navigate('New')}  style={styles.btn2} ></Button>
+                                            onPress={() => navigation.navigate('Navigationbottom')}  style={styles.btn2} ></Button>
                                                     {/* <TouchableOpacity style={styles.btn1}
                                                         onPress={() => navigation.navigate('New')}>
                                                         <Text style={styles.t4}> Proceed</Text>

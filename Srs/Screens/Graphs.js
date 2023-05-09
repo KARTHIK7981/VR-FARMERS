@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */
 import React, {useEffect, useState} from 'react';
-import {View, Text, Dimensions, TouchableOpacity} from 'react-native';
+import {View, Text, Dimensions, TouchableOpacity,StatusBar} from 'react-native';
 import {LineChart} from 'react-native-chart-kit';
 import Graphswitch from './GraphSwitch';
-// import CustomSwitch from './CustomSwitch';
+import AppLoader from '../AppLoader';
 import {displayPartsToString} from 'typescript';
 
 function* yLabel() {
@@ -11,10 +11,11 @@ function* yLabel() {
 }
 let lis = [];
 // eslint-disable-next-line no-undef
-const App = () => {
+const Gs = () => {
   let values = [230, 250, 300, 350, 400, 450];
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState('8u');
+  const [value,setValue]=useState('8e');
   const [err, setErr] = useState('');
 
   useEffect(() => {
@@ -47,9 +48,19 @@ const App = () => {
         parseInt(result.e),
         parseInt(result.f),
       ];
+      let dynamicData2 =[
+        parseInt(result.g),
+        parseInt(result.h),
+        parseInt(result.i),
+        parseInt(result.j),
+        parseInt(result.k),
+        parseInt(result.l),
+      ];
       console.log(`Dynamic Data ${dynamicData}`);
+      console.log(`Dynamic Data ${dynamicData2}`);
       // lis = dynamicData;
       setData(dynamicData);
+      setValue(dynamicData2);
     } catch (err) {
       setErr(err.message);
     } finally {
@@ -64,6 +75,15 @@ const App = () => {
     return await handleClick(index);
   };
   return (
+    <>
+    <StatusBar
+            translucent={true}
+            backgroundColor={'#d9f8a7'}
+            barStyle='dark-content'
+            hidden={false} />
+    {data=='8u' && value=='8e'? (
+      <AppLoader/>
+    ):(
     <View>
       <View style={{alignItems: 'center', margin: 20}}>
         <Graphswitch
@@ -79,11 +99,6 @@ const App = () => {
       <Text style={{fontSize: 25, fontWeight: 'bold', padding: 20}}>
         Count vs Price
       </Text>
-      {(() => {
-        if (data !== '8u') {
-          console.log('123');
-          console.log(data);
-          return (
             <LineChart
               data={{
                 labels: [100, 90, 80, 70, 60, 48.5],
@@ -121,21 +136,10 @@ const App = () => {
                 borderRadius: 16,
               }}
             />
-          );
-        }
-
-        return null;
-      })()}
 
       <Text style={{fontSize: 25, fontWeight: 'bold', padding: 20}}>
         Time vs Price
       </Text>
-
-      {(() => {
-        if (data !== '8u') {
-          console.log('123');
-          console.log(data);
-          return (
             <LineChart
               data={{
                 labels: [
@@ -180,12 +184,10 @@ const App = () => {
                 borderRadius: 16,
               }}
             />
-          );
-        }
-
-        return null;
-      })()}
     </View>
+  
+    )}
+        </>
   );
 };
-export default App;
+export default Gs;

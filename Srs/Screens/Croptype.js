@@ -19,7 +19,7 @@ const Ct = ({ navigation }) => {
     return (
         <><StatusBar
             translucent={true}
-            backgroundColor={'transparent'}
+            backgroundColor={'#d9f8a7'}
             barStyle='dark-content'
             hidden={false} />
             <SafeAreaView style={[styles.container]}>
@@ -44,7 +44,7 @@ const Ct = ({ navigation }) => {
                     <Carousel
                         loop
                         autoPlay={true}
-                        width={width}
+                        width={width}    
                         height={width / 1}
                         data={[{
                             img:<Svgimg5 width={wp("80%")}  ></Svgimg5>
@@ -83,7 +83,7 @@ const Ct = ({ navigation }) => {
                             margin:wp("0%"),
                         }}
                     > 
-                    <TouchableOpacity onPress={() => navigation.navigate('Profile' , {text: item['text'] })}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Feedchart' , {text: item['text'] })}>
                     {item['img']}
                     </TouchableOpacity>
                     </View>
